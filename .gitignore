@@ -1,0 +1,4 @@
+# angular project
+ui/node_modules
+# secrets
+kaleidoscopic.secrethub.bot.token
