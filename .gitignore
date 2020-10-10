@@ -1,4 +1,5 @@
 # angular project
 ui/node_modules
+ui/dist
 # secrets
 kaleidoscopic.secrethub.bot.token

@@ -45,7 +45,7 @@ jobs:
                     # be set for [Secrethub CLI Auth], at project, or context level
                     export QUAY_SECRETS_FOLDER_DEV=pokusio/kaleidoscopic/dev/quay/bot
                     export QUAY_BOT_USERNAME=$(secrethub read "${QUAY_SECRETS_FOLDER_DEV}/username")
-                    export QUAY_BOT_TOKEN=$(secrethub read "${QUAY_SECRETS_FOLDER_DEV}/token")
+                    export QUAY_BOT_SECRET=$(secrethub read "${QUAY_SECRETS_FOLDER_DEV}/token")
                     echo "QUAY_BOT_USERNAME=${QUAY_BOT_USERNAME}"
                     # echo "QUAY_BOT_TOKEN=${QUAY_BOT_TOKEN}"
                     docker login -u="${QUAY_BOT_USERNAME}" -p="${QUAY_BOT_SECRET}" quay.io
