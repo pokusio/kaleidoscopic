@@ -25,9 +25,26 @@ To implement the REST Endpointys, I will use :
 
 * How the Endpoint willbe consumed, using `curl` :
 
+  * The request :
+
 ```bash
 curl -X GET http://$KALEIDOSCOPIC_API_HOSTNAME:$KALEIDOSCOPIC_API_PORT_NO/api/v1/ui/theme/maincolor | jq .
 ```
+  * will return a JSON object of the following form :
+
+```JSon
+{
+  "red": "<0 to 255>",
+  "green": "<0 to 255>",
+  "blue": "<0 to 255>",
+  "opacity": "<0 to 255>"
+}
+```
+
+The angular 10 Web UI SPA will :
+* use an `RxJS` timer and `RxJS` `Axios` call to request the REST API every second, and
+* then update `ngModel` with `rgb` and `opacity` values to Update the entire page color
+
 
 ### The WRITE/Update Endpoint spec
 
@@ -46,3 +63,46 @@ echo "${JSON_PAYLOAD}" | jq .
 curl -d  "${JSON_PAYLOAD}" -X POST http://$POKUS_API_HOSTNAME:$POKUS_API_PORT_NO/api/v1/files/management/ui/theme/maincolor | jq .
 
 ```
+
+
+# Dev Guide
+
+## Git workflow
+
+I use the git flow with pure default config.
+
+* Resume work on a feature, from scratch  :
+
+```bash
+export WORKSPACE=~/kaleidoscopic.dev
+export REPO_GIT_SSH_URI=git@github.com:pokusio/kaleidoscopic.git
+export FEATURE_ALIAS=''
+## --- GIT GLOBAL CONFIG
+##
+git config --global commit.gpgsign true
+git config --global user.name "Jean-Baptiste-Lasselle"
+git config --global user.email jean.baptiste.lasselle.pegasus@gmail.com
+git config --global user.signingkey 7B19A8E1574C2883
+
+git config --global --list
+
+# will re-define the default identity in use
+# https://docstore.mik.ua/orelly/networking_2ndEd/ssh/ch06_04.htm
+ssh-add ~/.ssh.perso.backed/id_rsa
+
+export GIT_SSH_COMMAND='ssh -i ~/.ssh.perso.backed/id_rsa'
+ssh -Ti ~/.ssh.perso.backed/id_rsa git@github.com
+
+## --- RETRIEVE CODE IN WORKSPACE
+##
+
+git clone "${REPO_GIT_SSH_URI}" "${WORKSPACE}"
+cd "${WORKSPACE}"
+## --- GIT WORKFLOW
+##
+# --- GIT FLOW CONFIG
+git flow init --defaults
+# now on 'develop' branch
+# --- switch to feature branch
+# git flow feature start "${FEATURE_ALIAS}"
+git checkout "feature/${FEATURE_ALIAS}"
