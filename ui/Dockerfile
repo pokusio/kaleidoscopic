@@ -1,5 +1,5 @@
 ### STAGE 1: Build ###
-FROM node:12.19.0-alpine-3.9 AS build
+FROM node:12.19.0-alpine3.9 AS build
 ARG GIT_COMMIT=unspecified
 LABEL git.commit.id=$GIT_COMMIT
 LABEL vendor=pokusio.io
