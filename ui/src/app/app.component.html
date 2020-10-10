@@ -1,0 +1,27 @@
+<div [ngStyle]="{'background': 'rgba(' + red + ',' + green + ',' + blue + ',' + opacity + ')', 'font-size': size + 'px', height: '100%', width: '100%'}">
+
+<h1>Kaleidoscopic</h1>
+
+<p>
+  <a href="https://github.com/pokusio/kaleidoscopic">Source code on Github.com</a>
+</p>
+
+<div [style.color]="'orange'">style using property syntax</div>
+<div [className]="'blue'">css class using property syntax</div>
+
+<br /><br />
+
+<input [(ngModel)]="red" />
+<input [(ngModel)]="green" />
+<input [(ngModel)]="blue" />
+<input [(ngModel)]="opacity" />
+
+
+
+<br />
+
+<span [ngClass]="displayText">toggled with ngClass</span>
+<br/>
+<button (click)="toggle()">Toggle</button>
+
+</div>
