@@ -76,7 +76,7 @@ jobs:
                     export DESIRED_DOCKER_TAG="${DESIRED_DOCKER_TAG}-$(git rev-parse --short HEAD)"
                     # docker build --no-cache -t "quay.io/pok-us-io/kaleidoscopic-api:${DESIRED_DOCKER_TAG}" -f ./Dockerfile .
                     docker build -t "quay.io/pok-us-io/kaleidoscopic-api:${DESIRED_DOCKER_TAG}" --build-arg GIT_COMMIT=$(git rev-parse HEAD) -f ./ui/Dockerfile ./ui
-                    # docker build -t "quay.io/pok-us-io/kaleidoscopic-api:0.0.1" -f ./ui/Dockerfile ./ui
+                    # docker build -t "quay.io/pok-us-io/kaleidoscopic-api:0.0.1" -f ./ui/Dockerfile ./api
       - run:
           name: "Docker push API OCI Image"
           command: |
