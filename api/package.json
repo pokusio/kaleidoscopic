@@ -1,5 +1,5 @@
 {
-  "name": "pokus",
+  "name": "kaleidoscopic-api",
   "version": "0.0.1",
   "description": "The distributed, scalable Content Manager for hugo.",
   "main": "src/main.ts",
