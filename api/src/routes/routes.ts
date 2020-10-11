@@ -27,12 +27,21 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "ValidateErrorJSON": {
+    "FieldErrors": {
         "dataType": "refObject",
         "properties": {
-            "message": { "dataType": "enum", "enums": ["Validation failed"], "required": true },
-            "details": { "dataType": "nestedObjectLiteral", "nestedProperties": {}, "additionalProperties": { "dataType": "any" }, "required": true },
-            "fields": { "dataType": "array", "array": { "dataType": "string" }, "required": true },
+        },
+        "additionalProperties": { "dataType": "nestedObjectLiteral", "nestedProperties": { "value": { "dataType": "any" }, "message": { "dataType": "string", "required": true } } },
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "ValidateError": {
+        "dataType": "refObject",
+        "properties": {
+            "name": { "dataType": "string", "required": true },
+            "message": { "dataType": "string", "required": true },
+            "stack": { "dataType": "string" },
+            "status": { "dataType": "double", "required": true },
+            "fields": { "ref": "FieldErrors", "required": true },
         },
         "additionalProperties": false,
     },
