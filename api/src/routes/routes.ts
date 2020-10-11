@@ -27,24 +27,16 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "ValidateErrorJSON": {
+    "PrimaryColorCreationParams": {
         "dataType": "refObject",
         "properties": {
-            "message": { "dataType": "enum", "enums": ["Validation failed"], "required": true },
-            "details": { "dataType": "nestedObjectLiteral", "nestedProperties": {}, "additionalProperties": { "dataType": "any" }, "required": true },
-            "fields": { "dataType": "array", "array": { "dataType": "string" }, "required": true },
+            "description": { "dataType": "string", "required": true },
+            "red": { "dataType": "double", "required": true },
+            "green": { "dataType": "double", "required": true },
+            "blue": { "dataType": "double", "required": true },
+            "opacity": { "dataType": "double", "required": true },
         },
         "additionalProperties": false,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "Pick_PrimaryColor.description-or-red-or-green-or-blue-or-opacity_": {
-        "dataType": "refAlias",
-        "type": { "dataType": "nestedObjectLiteral", "nestedProperties": { "description": { "dataType": "string", "required": true }, "red": { "dataType": "double", "required": true }, "green": { "dataType": "double", "required": true }, "blue": { "dataType": "double", "required": true }, "opacity": { "dataType": "double", "required": true } }, "validators": {} },
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    "PrimaryColorCreationParams": {
-        "dataType": "refAlias",
-        "type": { "ref": "Pick_PrimaryColor.description-or-red-or-green-or-blue-or-opacity_", "validators": {} },
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 };

@@ -39,7 +39,7 @@ app.use(function errorHandler(
   }*/
   if (err instanceof Error) {
     return res.status(500).json({
-      message: "Internal Server Error for [kaleidoscopic] API, error is" + `[${JSON.stringify(err, null, " ")}]`,
+      message: "Internal Server Error for [kaleidoscopic] API, error is " + `[${JSON.stringify(err, null, " ")}]`,
     });
   }
 
