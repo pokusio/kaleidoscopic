@@ -23,11 +23,11 @@ ng serve --watch
 
 ## Run Dockerized
 
-A Docker Compose is at the root of this git repo for developement purpose :
+A Docker Compose is at the root of this git repo for development purpose :
 
-* this allows to setup a dev environement without changing anything to the bare-metal machine you'reworking on.
+* this allows to setup a dev environment without changing anything to the bare-metal machine you're working on.
 * the `<REP ROOT FOLDER>/ui/Dockerfile.dev` is the `Dockerfile` used for development : the http server used there is the one spawned by angular cli with the `ng serve` command
-  * the `<REP ROOT FOLDER>/ui/Dockerfile` is the `Dockerfile` used to release a production-ready docker image : the http server used there is the nginx http server. That's the docker image built and pushed to quay.io
+* the `<REP ROOT FOLDER>/ui/Dockerfile` is the `Dockerfile` used to release a production-ready docker image : the http server used there is the nginx http server. That's the docker image built and pushed to `quay.io`
 
 ## Respawning dev dependencies
 
