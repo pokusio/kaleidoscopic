@@ -111,7 +111,8 @@ I use the git flow with pure default config.
 ```bash
 export WORKSPACE=~/kaleidoscopic.dev
 export REPO_GIT_SSH_URI=git@github.com:pokusio/kaleidoscopic.git
-export FEATURE_ALIAS=''
+export FEATURE_ALIAS='cleaning_code_and_doc'
+export COMMIT_MESSAGE="feat.(${FEATURE_ALIAS}) : cleaning root [README.md] and api src code"
 ## --- GIT GLOBAL CONFIG
 ##
 git config --global commit.gpgsign true
@@ -141,3 +142,6 @@ git flow init --defaults
 # --- switch to feature branch
 # git flow feature start "${FEATURE_ALIAS}"
 git checkout "feature/${FEATURE_ALIAS}"
+export FEATURE_ALIAS='cleaning_code_and_doc'
+export COMMIT_MESSAGE="feat.(${FEATURE_ALIAS}) : cleaning root [README.md] and api src code"
+git add --all && git commit -m "${COMMIT_MESSAGE}" && git push -u origin HEAD

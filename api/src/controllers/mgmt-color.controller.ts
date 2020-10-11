@@ -15,7 +15,7 @@ export class ColorMangementController extends Controller {
      */
     @Post()
     @SuccessResponse("201", "Created") // Custom success response
-    /*@Response<ValidateErrorJSON>(422, "Validation Failed", {
+    @Response<ValidateErrorJSON>(422, "Validation Failed", {
       message: "Validation failed",
       details: {
         requestBody: {
@@ -24,7 +24,7 @@ export class ColorMangementController extends Controller {
           value: "52907745-7672-470e-a803-a2f8feb52944",
         }
       }, fields: ['id']
-    })*/
+    })
     /**
      *
      **/
