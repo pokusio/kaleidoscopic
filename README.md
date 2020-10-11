@@ -48,7 +48,7 @@ But the `Kaleidoscopic` experimental App is `Kubernetes`-first designed : It is 
   * The request :
 
 ```bash
-curl -X GET http://$KALEIDOSCOPIC_API_HOSTNAME:$KALEIDOSCOPIC_API_PORT_NO/api/v1/ui/theme/maincolor | jq .
+curl -X GET http://$KALEIDOSCOPIC_API_HOSTNAME:$KALEIDOSCOPIC_API_PORT_NO/api/v1/ui/theme/color | jq .
 ```
   * will return a JSON object of the following form :
 
@@ -72,6 +72,7 @@ The angular 10 Web UI SPA will :
 
 ```bash
 export JSON_PAYLOAD="{ \
+  \"description\" : \"Un petit exemple\", \
   \"red\" : \"<0 to 255>\", \
   \"green\" : \"<0 to 255>\", \
   \"blue\" : \"<0 to 255>\", \
@@ -80,7 +81,7 @@ export JSON_PAYLOAD="{ \
 
 echo "${JSON_PAYLOAD}" | jq .
 
-curl -d  "$JSON_PAYLOAD" -X POST http://$KALEIDOSCOPIC_API_HOSTNAME:$KALEIDOSCOPIC_API_PORT_NO/api/v1/files/management/ui/theme/maincolor | jq .
+curl -d  "$JSON_PAYLOAD" -X POST http://$KALEIDOSCOPIC_API_HOSTNAME:$KALEIDOSCOPIC_API_PORT_NO/api/v1/files/management/ui/theme/color | jq .
 
 ```
 
@@ -91,7 +92,12 @@ To implement the REST Endpoints, I will use :
 * pure NodeJS / Typescript
 * and a framework named [`TSOA`](https://github.com/lukeautry/tsoa) (Stands for "TypeScript Open API")  :
 * I love this framework, because it's MDA (Model Driven Architecture)
-* Its principle is very simple : you create / edit your `tsoa.json` file, and then you run the `tsoa routes -c tsoa.json`, andthat's it all your REST Endpoint are generated (all you ahve to do,is toad code in REST Controller, for the REST Endpoint todo "what you want it to do"). It can even generate for you the Open API spec, `openapi.json` ! End of story. _"Don't implement REST Controllers anymore"_
+* Its principle is very simple :
+  * you create / edit your `tsoa.json` file,
+  * you implement a `Model` and a `Controller`, using annotations (tsoa uses `Models` and `Controllers` as **singlesource of truth**)
+  * and then you run the `tsoa routes -c tsoa.json`, and that's it all your REST Endpoint `routes` are generated (all you have to do, is to add code in REST Controller, for the REST Endpoint todo "what you want it to do").
+  * It can even generate for you the Open API spec, `openapi.json` ! End of story.
+
 
 
 # Dev Guide
