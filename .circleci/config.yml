@@ -50,7 +50,7 @@ jobs:
                     docker tag "quay.io/pok-us-io/kaleidoscopic:${DESIRED_DOCKER_TAG}" "quay.io/pok-us-io/kaleidoscopic:stable-latest"
                     docker push "quay.io/pok-us-io/kaleidoscopic:${DESIRED_DOCKER_TAG}"
                     docker push "quay.io/pok-us-io/kaleidoscopic:stable-latest"
-  ui_docker_build_and_push:
+  api_docker_build_and_push:
     machine:
       image: 'ubuntu-1604:201903-01'    # recommended linux image - includes Ubuntu 16.04, docker 18.09.3, docker-compose 1.23.1
       # resource_class: medium
