@@ -52,12 +52,12 @@
 
       <hr />
 
-      <div class="card col-12">
+      <div class="card col-12" [ngStyle]="{'background': 'rgba(' + (255) + ',' + (255) + ',' + (255) + ',' + opacity/2 + ')'}">
         <div class="card-body">
           <h3 class="card-title">RGB and Opacity of the Background Color of Kaleidoscopic</h3>
           <h6 class="card-subtitle mb-2 text-muted">Use the inputs below to reset the background color in this page</h6>
           <p class="card-text">Using the REST API Endpoint you can also reset the color try <code></code></p>
-          <pre>
+          <pre [ngStyle]="{'background': 'white'}">
             <code>
             export JSON_PAYLOAD="&#123; \
             \"red\" : \"&lt;0 to 255&gt;\", \
