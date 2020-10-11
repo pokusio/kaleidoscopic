@@ -1,7 +1,7 @@
 /* tslint:disable */
 /* eslint-disable */
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, HttpStatusCodeLiteral, TsoaResponse } from 'tsoa';
+import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute, HttpStatusCodeLiteral, TsoaResponse } from '@tsoa/runtime';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ColorController } from './../controllers/color.controller';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -16,13 +16,13 @@ const models: TsoaRoute.Models = {
     "PrimaryColor": {
         "dataType": "refObject",
         "properties": {
-            "color_id": { "dataType": "double", "required": true },
-            "color_guid": { "dataType": "string", "required": true },
-            "description": { "dataType": "string", "required": true },
-            "red": { "dataType": "double", "required": true },
-            "green": { "dataType": "double", "required": true },
-            "blue": { "dataType": "double", "required": true },
-            "opacity": { "dataType": "double", "required": true },
+            "color_id": {"dataType":"double","required":true},
+            "color_guid": {"dataType":"string","required":true},
+            "description": {"dataType":"string","required":true},
+            "red": {"dataType":"double","required":true},
+            "green": {"dataType":"double","required":true},
+            "blue": {"dataType":"double","required":true},
+            "opacity": {"dataType":"double","required":true},
         },
         "additionalProperties": false,
     },
@@ -31,17 +31,17 @@ const models: TsoaRoute.Models = {
         "dataType": "refObject",
         "properties": {
         },
-        "additionalProperties": { "dataType": "nestedObjectLiteral", "nestedProperties": { "value": { "dataType": "any" }, "message": { "dataType": "string", "required": true } } },
+        "additionalProperties": {"dataType":"nestedObjectLiteral","nestedProperties":{"value":{"dataType":"any"},"message":{"dataType":"string","required":true}}},
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "ValidateError": {
         "dataType": "refObject",
         "properties": {
-            "name": { "dataType": "string", "required": true },
-            "message": { "dataType": "string", "required": true },
-            "stack": { "dataType": "string" },
-            "status": { "dataType": "double", "required": true },
-            "fields": { "ref": "FieldErrors", "required": true },
+            "name": {"dataType":"string","required":true},
+            "message": {"dataType":"string","required":true},
+            "stack": {"dataType":"string"},
+            "status": {"dataType":"double","required":true},
+            "fields": {"ref":"FieldErrors","required":true},
         },
         "additionalProperties": false,
     },
@@ -49,11 +49,11 @@ const models: TsoaRoute.Models = {
     "PrimaryColorCreationParams": {
         "dataType": "refObject",
         "properties": {
-            "description": { "dataType": "string", "required": true },
-            "red": { "dataType": "double", "required": true },
-            "green": { "dataType": "double", "required": true },
-            "blue": { "dataType": "double", "required": true },
-            "opacity": { "dataType": "double", "required": true },
+            "description": {"dataType":"string","required":true},
+            "red": {"dataType":"double","required":true},
+            "green": {"dataType":"double","required":true},
+            "blue": {"dataType":"double","required":true},
+            "opacity": {"dataType":"double","required":true},
         },
         "additionalProperties": false,
     },
@@ -68,8 +68,8 @@ export function RegisterRoutes(app: express.Express) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
-    app.get('/api/v1/ui/theme/color',
-        function(request: any, response: any, next: any) {
+        app.get('/api/v1/ui/theme/color',
+            function (request: any, response: any, next: any) {
             const args = {
             };
 
@@ -88,9 +88,9 @@ export function RegisterRoutes(app: express.Express) {
             const promise = controller.msg.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, next);
         });
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.get('/api/v1',
-        function(request: any, response: any, next: any) {
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/api/v1',
+            function (request: any, response: any, next: any) {
             const args = {
             };
 
@@ -109,9 +109,9 @@ export function RegisterRoutes(app: express.Express) {
             const promise = controller.index.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, next);
         });
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.get('/api/v1/msg',
-        function(request: any, response: any, next: any) {
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/api/v1/msg',
+            function (request: any, response: any, next: any) {
             const args = {
             };
 
@@ -130,11 +130,11 @@ export function RegisterRoutes(app: express.Express) {
             const promise = controller.msg.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, next);
         });
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-    app.post('/api/v1/management/ui/theme/color',
-        function(request: any, response: any, next: any) {
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.post('/api/v1/management/ui/theme/color',
+            function (request: any, response: any, next: any) {
             const args = {
-                requestBody: { "in": "body", "name": "requestBody", "required": true, "ref": "PrimaryColorCreationParams" },
+                    requestBody: {"in":"body","name":"requestBody","required":true,"ref":"PrimaryColorCreationParams"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -152,7 +152,7 @@ export function RegisterRoutes(app: express.Express) {
             const promise = controller.updateColor.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, next);
         });
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
@@ -194,10 +194,10 @@ export function RegisterRoutes(app: express.Express) {
             response.status(statusCode || 204).end();
         }
     }
-
+    
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
-    function responder(response: any): TsoaResponse<HttpStatusCodeLiteral, unknown> {
+    function responder(response: any): TsoaResponse<HttpStatusCodeLiteral, unknown>  {
         return function(status, data, headers) {
             returnHandler(response, status, data, headers);
         };
@@ -206,22 +206,22 @@ export function RegisterRoutes(app: express.Express) {
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
     function getValidatedArgs(args: any, request: any, response: any): any[] {
-        const fieldErrors: FieldErrors = {};
+        const fieldErrors: FieldErrors  = {};
         const values = Object.keys(args).map((key) => {
             const name = args[key].name;
             switch (args[key].in) {
                 case 'request':
                     return request;
                 case 'query':
-                    return validationService.ValidateParam(args[key], request.query[name], name, fieldErrors, undefined, { "noImplicitAdditionalProperties": "throw-on-extras" });
+                    return validationService.ValidateParam(args[key], request.query[name], name, fieldErrors, undefined, {"noImplicitAdditionalProperties":"throw-on-extras"});
                 case 'path':
-                    return validationService.ValidateParam(args[key], request.params[name], name, fieldErrors, undefined, { "noImplicitAdditionalProperties": "throw-on-extras" });
+                    return validationService.ValidateParam(args[key], request.params[name], name, fieldErrors, undefined, {"noImplicitAdditionalProperties":"throw-on-extras"});
                 case 'header':
-                    return validationService.ValidateParam(args[key], request.header(name), name, fieldErrors, undefined, { "noImplicitAdditionalProperties": "throw-on-extras" });
+                    return validationService.ValidateParam(args[key], request.header(name), name, fieldErrors, undefined, {"noImplicitAdditionalProperties":"throw-on-extras"});
                 case 'body':
-                    return validationService.ValidateParam(args[key], request.body, name, fieldErrors, undefined, { "noImplicitAdditionalProperties": "throw-on-extras" });
+                    return validationService.ValidateParam(args[key], request.body, name, fieldErrors, undefined, {"noImplicitAdditionalProperties":"throw-on-extras"});
                 case 'body-prop':
-                    return validationService.ValidateParam(args[key], request.body[name], name, fieldErrors, 'body.', { "noImplicitAdditionalProperties": "throw-on-extras" });
+                    return validationService.ValidateParam(args[key], request.body[name], name, fieldErrors, 'body.', {"noImplicitAdditionalProperties":"throw-on-extras"});
                 case 'res':
                     return responder(response);
             }
