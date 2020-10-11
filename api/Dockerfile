@@ -38,7 +38,7 @@ COPY tsoa.json .
 COPY tslint.json .
 RUN mkdir -p ./src/routes && rm -fr ./src/routes && mkdir -p ./src/routes
 RUN tsoa routes -c tsoa.json
-RUN echo "After [tsoa routes -c tsoa.json], Is [dist/] in PWD=[$(pwd)] ? " && ls -allh && ls -allh dist/ && tree dist/
+RUN echo "After [tsoa routes -c tsoa.json], Is [routes/] in PWD=[$(pwd)] ? " && ls -allh && ls -allh routes/ && tree routes/
 RUN npm run build
 RUN echo "After npm run build, Is [dist/] in PWD=[$(pwd)] ? " && ls -allh && ls -allh dist/ && tree dist/
 
