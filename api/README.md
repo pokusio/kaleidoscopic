@@ -7,7 +7,7 @@
 ```bash
 npm install
 tsoa routes -c tsoa.json
-npmrun build
+npm run build
 ```
 
 * serve locally, with dynamic reload when ever you edit a file :
@@ -41,7 +41,7 @@ jbl@poste-devops-jbl-16gbram:~/kaleidoscopic/api$ curl -X POST http://localhost:
 }
 jbl@poste-devops-jbl-16gbram:~/kaleidoscopic/api$
 ```
-* 
+*
 
 ## Run Dockerized
 
