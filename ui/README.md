@@ -1,16 +1,37 @@
 # The Angular SPA Web UI
 
-A Docker Compose is here for developement purpose :
+## Build n run
+
+* build for dev :
+
+```bash
+npm run build
+```
+
+* build for prod :
+
+```bash
+npm run build --prod
+```
+
+* serve locally, with dynamic reload when ever you edit a file :
+
+```bash
+ng serve --watch
+# Then go to http://localhost:4200
+```
+
+## Run Dockerized
+
+A Docker Compose is at the root of this git repo for developement purpose :
 
 * this allows to setup a dev environement without changing anything to the bare-metal machine you'reworking on.
-* the `<REP ROOT FOLDER>/ui/Dockerfile.dev` is the `Dockerfile` used for development : the http server used there is the one spawned by angular cli with the `ǹg serve` command
-* the `<REP ROOT FOLDER>/ui/Dockerfile` is the `Dockerfile` used to release a production-ready docker image : the http server used there is the nginx http server
+* the `<REP ROOT FOLDER>/ui/Dockerfile.dev` is the `Dockerfile` used for development : the http server used there is the one spawned by angular cli with the `ng serve` command
+  * the `<REP ROOT FOLDER>/ui/Dockerfile` is the `Dockerfile` used to release a production-ready docker image : the http server used there is the nginx http server. That's the docker image built and pushed to quay.io
 
+## Respawning dev dependencies
 
-
-
-# Respawning dev dependencies
-
+* I started this Angular quick app from a sample app, whosedev cycle was broken : `npm run build` gave errors.
 * How I re-installed all `devDependencies`, to upgrade them and get rid of the `node-sass` error that I had :
 
 ```bash

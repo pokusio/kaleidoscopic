@@ -64,7 +64,7 @@ export JSON_PAYLOAD="{ \
 
 echo "${JSON_PAYLOAD}" | jq .
 
-curl -d  "${JSON_PAYLOAD}" -X POST http://$POKUS_API_HOSTNAME:$POKUS_API_PORT_NO/api/v1/files/management/ui/theme/maincolor | jq .
+curl -d  "$JSON_PAYLOAD" -X POST http://$KALEIDOSCOPIC_API_HOSTNAME:$KALEIDOSCOPIC_API_PORT_NO/api/v1/files/management/ui/theme/maincolor | jq .
 
 ```
 

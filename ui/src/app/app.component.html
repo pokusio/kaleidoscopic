@@ -44,41 +44,106 @@
     </nav>
   </header>
 
+
   <main>
+      <div  class="container-fluid" [ngStyle]="{'background': 'rgba(' + red + ',' + green + ',' + blue + ',' + opacity + ')'}">
 
-      <div  class="container-fluid" [ngStyle]="{'background': 'rgba(' + red + ',' + green + ',' + blue + ',' + opacity + ')', 'font-size': size + 'px', height: '100%', width: '100%'}">
+      <h1>Kaleidoscopic</h1>
 
-      <h1></h1>
+      <hr />
 
+      <div class="card col-12">
+        <div class="card-body">
+          <h3 class="card-title">RGB and Opacity of the Background Color of Kaleidoscopic</h3>
+          <h6 class="card-subtitle mb-2 text-muted">Use the inputs below to reset the background color in this page</h6>
+          <p class="card-text">Using the REST API Endpoint you can also reset the color try <code></code></p>
+          <pre>
+            <code>
+            export JSON_PAYLOAD="&#123; \
+            \"red\" : \"&lt;0 to 255&gt;\", \
+            \"green\" : \"&lt;0 to 255&gt;\", \
+            \"blue\" : \"&lt;0 to 255&gt;\", \
+            \"opacity\" : \"&lt;decimal from 0 to 1>\" \
+            &#125;"
 
-      <div [style.color]="'orange'">style using property syntax</div>
-      <div [className]="'blue'">css class using property syntax</div>
+            echo "$&#123;JSON_PAYLOAD&#125;" &#124; jq .
 
-      <br /><br />
+            curl -d  "$&#123;JSON_PAYLOAD&#125;" -X POST http://$&#123;KALEIDOSCOPIC_API_HOSTNAME&#125;:$&#123;KALEIDOSCOPIC_API_PORT_NO&#125;/api/v1/files/management/ui/theme/maincolor &#124; jq .
 
-      <input [(ngModel)]="red" />
-      <input [(ngModel)]="green" />
-      <input [(ngModel)]="blue" />
-      <input [(ngModel)]="opacity" />
+            </code>
+          </pre>
 
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon3">Red Component (An integer between 0-255)</span>
+            </div>
+            <input [(ngModel)]="red" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon3">Green Component (An integer between 0-255)</span>
+            </div>
+            <input [(ngModel)]="green" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon3">Blue Component (An integer between 0-255)</span>
+            </div>
+            <input [(ngModel)]="blue" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon3">Opacity (A decimal number between 0 and 1)</span>
+            </div>
+            <input [(ngModel)]="opacity" type="text" class="form-control" id="basic-url" aria-describedby="basic-addon3">
+          </div>
 
+        </div>
+      </div>
+      <hr />
+      <div class="card col-12" [ngStyle]="{'background': 'rgba(' + red/32 + ',' + green + ',' + blue + ',' + opacity + ')', font: sans-serif}">
+        <div class="card-body">
+          <h3 class="card-title">The Kaleidoscopic REST API</h3>
 
-      <br />
+          <p class="card-text">Using the REST API Endpoint you can also reset the color try <code></code></p>
+          <pre  [ngStyle]="{'background': 'white'}">
+            <code>
+            export JSON_PAYLOAD="&#123; \
+            \"red\" : \"&lt;0 to 255&gt;\", \
+            \"green\" : \"&lt;0 to 255&gt;\", \
+            \"blue\" : \"&lt;0 to 255&gt;\", \
+            \"opacity\" : \"&lt;decimal from 0 to 1>\" \
+            &#125;"
 
-      <span [ngClass]="displayText">toggled with ngClass</span>
-      <br/>
-      <button (click)="toggle()">Toggle</button>
+            echo "$&#123;JSON_PAYLOAD&#125;" &#124; jq .
 
+            curl -d  "$&#123;JSON_PAYLOAD&#125;" -X POST http://$&#123;KALEIDOSCOPIC_API_HOSTNAME&#125;:$&#123;KALEIDOSCOPIC_API_PORT_NO&#125;/api/v1/files/management/ui/theme/maincolor &#124; jq .
+
+            </code>
+          </pre>
+
+        </div>
       </div>
 
 
-  </main>
 
-  <div class="footer">
+
+      <hr />
+
+      <span [ngClass]="displayText">toggled with ngClass</span>
+      <br/>
+      <button  class="btn btn-primary" (click)="toggle()">Toggle</button>
+
+      </div>
+    </main>
+
+
+
+  <div class="footer" [ngStyle]="{'background': 'rgba(' + red + ',' + green + ',' + blue + ',' + opacity/3 + ')', font: sans-serif}">
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <p class="text-center text-white">&copy; 2020 - www.pok-us.io</p>
+          <p class="text-center text-navy">&copy; 2020 - www.pok-us.io</p>
         </div>
       </div>
     </div>
