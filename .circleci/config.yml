@@ -3,7 +3,7 @@ version: 2.1
 orbs:
   secrethub: secrethub/cli@1.0.0
 jobs:
-  docker_build_and_push:
+  ui_docker_build_and_push:
     machine:
       image: 'ubuntu-1604:201903-01'    # recommended linux image - includes Ubuntu 16.04, docker 18.09.3, docker-compose 1.23.1
       # resource_class: medium
@@ -59,9 +59,9 @@ jobs:
 
 workflows:
   version: 2.1
-  docker_build_and_push:
+  ui_docker_build_and_push:
     jobs:
-      - docker_build_and_push:
+      - ui_docker_build_and_push:
           context: kaleidoscopic
           filters:
             branches:

@@ -6,10 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  red = '100';
-  green = '21';
-  blue = '123';
-  opacity = '0.7';
+  red = '30';
+  green = '210';
+  blue = '100';
+  opacity = '0.45';
 
   size = 16;
   displayText = 'show-class';

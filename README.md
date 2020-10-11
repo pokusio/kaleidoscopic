@@ -1,6 +1,6 @@
 # Kaleidoscopic : A simple Web SPA and its backend
 
-[![Docker Repository on Quay](https://quay.io/repository/pok-us-io/kaleidoscopic/status "Docker Repository on Quay")](https://quay.io/repository/pok-us-io/kaleidoscopic)
+[![Web UI Docker Repository on Quay](https://quay.io/repository/pok-us-io/kaleidoscopic/status "Web UI Docker Repository on Quay")](https://quay.io/repository/pok-us-io/kaleidoscopic)
 
 Kaleidoscopic a basic application, designed to work on architectural POCs (Proof of Concepts).
 
@@ -11,21 +11,37 @@ Kaleidoscopic a basic application, with :
   * The first Endpoint, is consumed by the Web SPA : The SPA queries this REST API Edpoint to find out what is the main color UI should use for its UI Theme. It's a pure READ/Retrieve operation
   * The Second endpoint, is a utility someone can use, to change the above mentioned color. It's a pure WRITE/Update operation
 
-Folder structureof this repo:
+Folder structure of this repo:
 
 * In `./ui/` : The Angular 10 SPA Web UI
-* In `./rest-api/` : The source code for the ExpressJS Server and REST API Endpoints
+* In `./rest-api/` : The source code for the `ExpressJS` Server and REST API Endpoints
+
+
+## Run Dockerized
+
+
+A Docker Compose will be completed at the root of this git repo for development purpose. This allows to setup a dev environment without changing anything to the bare-metal machine you're working on.
+
+But the `Kaleidoscopic` experimental App is `Kubernetes`-first designed : It is especially meant to build POCs /conduct  experiments in the `Kubernetes` context.
+
+### The Docker images
+
+* For the UI :
+  * the `<REP ROOT FOLDER>/ui/Dockerfile.dev` is the `Dockerfile` used for development : the http server used there is the one spawned by angular cli with the `ng serve` command
+  * the `<REP ROOT FOLDER>/ui/Dockerfile` is the `Dockerfile` used to release a production-ready docker image : the http server used there is the nginx http server. That's the docker image built and pushed to `quay.io`
+* For the REST API :
+  * the `<REP ROOT FOLDER>/api/Dockerfile.dev` is the `Dockerfile` used for development : the http server used there is the one spawned by angular cli with the `ng serve` command
+  * the `<REP ROOT FOLDER>/api/Dockerfile` is the `Dockerfile` used to release a production-ready docker image : the http server used there is the ExpressJS http server as well, but only the compile from `TypeScript` JavaScript is included in this image. Plus, this imageis multi-stage built, in order to strip off to its minimal, the OCI image deployed. That's the docker image built and pushed to `quay.io`
+
+
+## Design
+
+### The REST endpoints : Specs and Implementation
 
 
 
 
-
-## The REST endpoints : Specs and Implementation
-
-
-
-
-### The READ/Retrieve Endpoint spec
+#### The READ/Retrieve Endpoint spec
 
 * How the Endpoint willbe consumed, using `curl` :
 
@@ -64,7 +80,7 @@ export JSON_PAYLOAD="{ \
 
 echo "${JSON_PAYLOAD}" | jq .
 
-curl -d  "${JSON_PAYLOAD}" -X POST http://$POKUS_API_HOSTNAME:$POKUS_API_PORT_NO/api/v1/files/management/ui/theme/maincolor | jq .
+curl -d  "$JSON_PAYLOAD" -X POST http://$KALEIDOSCOPIC_API_HOSTNAME:$KALEIDOSCOPIC_API_PORT_NO/api/v1/files/management/ui/theme/maincolor | jq .
 
 ```
 
