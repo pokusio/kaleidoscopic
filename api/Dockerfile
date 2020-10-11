@@ -30,7 +30,7 @@ RUN npm install --only=production
 RUN cp -R node_modules prod_node_modules
 RUN echo "Content [prod_node_modules/] in PWD=[$(pwd)/prod_node_modules]"
 # --- Install ALL node_modules, including 'devDependencies'
-RUN npm i -g tsoa@3.2.1
+RUN npm i -g tsoa@3.3.0
 RUN npm install
 RUN mkdir -p /kaleidoscopic/api/src
 COPY src/ ./src
