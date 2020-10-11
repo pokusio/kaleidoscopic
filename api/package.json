@@ -24,7 +24,8 @@
   "scripts": {
     "build": "tsc -p src",
     "server": "node dist/main.js",
-    "lint": "tslint -c tslint.json 'src/**/*.ts'"
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "test": "echo 'no tests are implemented yet! (This is wrong, and why mentioned)'"
   },
   "repository": {
     "type": "git",
