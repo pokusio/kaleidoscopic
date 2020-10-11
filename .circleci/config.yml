@@ -8,25 +8,19 @@ jobs:
       image: 'ubuntu-1604:201903-01'    # recommended linux image - includes Ubuntu 16.04, docker 18.09.3, docker-compose 1.23.1
       # resource_class: medium
       # docker_layer_caching: true    # default - false # requires a Circle CI plan that includes [Docker layer caching feature]
-    environment:
-      DESIRED_DOCKER_TAG: 5.27.1
+    # environment:
+      # DESIRED_DOCKER_TAG: 5.27.1
     steps:
       - checkout
       - secrethub/install
       - run:
           name: "Testing local docker installation"
           command: docker version
-      - run:
-          name: "Testing local env"
-          command: ls -allh .
       - run: # print the name of the branch we're on
           name: "What branch am I on ?"
           command: echo ${CIRCLE_BRANCH}
       - run:
-          name: "Testing DESIRED_DOCKER_TAG"
-          command: echo "Docker tag is [${DESIRED_DOCKER_TAG}]"
-      - run:
-          name: "Docker build"
+          name: "Docker build Angular Web UI OCI Image"
           command: |
                     pwd
                     ls -allh
@@ -37,7 +31,7 @@ jobs:
                     docker build -t "quay.io/pok-us-io/kaleidoscopic:${DESIRED_DOCKER_TAG}" --build-arg GIT_COMMIT=$(git rev-parse HEAD) -f ./ui/Dockerfile ./ui
                     # docker build -t "quay.io/pok-us-io/kaleidoscopic:0.0.1" -f ./ui/Dockerfile ./ui
       - run:
-          name: "Docker push"
+          name: "Docker push Angular Web UI OCI Image"
           command: |
                     # checking docker image built in previous step is there
                     docker images
@@ -56,12 +50,79 @@ jobs:
                     docker tag "quay.io/pok-us-io/kaleidoscopic:${DESIRED_DOCKER_TAG}" "quay.io/pok-us-io/kaleidoscopic:stable-latest"
                     docker push "quay.io/pok-us-io/kaleidoscopic:${DESIRED_DOCKER_TAG}"
                     docker push "quay.io/pok-us-io/kaleidoscopic:stable-latest"
+  ui_docker_build_and_push:
+    machine:
+      image: 'ubuntu-1604:201903-01'    # recommended linux image - includes Ubuntu 16.04, docker 18.09.3, docker-compose 1.23.1
+      # resource_class: medium
+      # docker_layer_caching: true    # default - false # requires a Circle CI plan that includes [Docker layer caching feature]
+    # environment:
+      # DESIRED_DOCKER_TAG: 5.27.1
+    steps:
+      - checkout
+      - secrethub/install
+      - run:
+          name: "Testing local docker installation"
+          command: docker version
+      - run: # print the name of the branch we're on
+          name: "What branch am I on ?"
+          command: echo ${CIRCLE_BRANCH}
+      - run:
+          name: "Docker build API OCI Image"
+          command: |
+                    pwd
+                    ls -allh
+                    # export DESIRED_DOCKER_TAG=$(git describe --match "[0-999].[0-999].[0-999]" --abbrev=0 --tags)
+                    export DESIRED_DOCKER_TAG=$(git describe --abbrev=0 --tags)
+                    export DESIRED_DOCKER_TAG="${DESIRED_DOCKER_TAG}-$(git rev-parse --short HEAD)"
+                    # docker build --no-cache -t "quay.io/pok-us-io/kaleidoscopic-api:${DESIRED_DOCKER_TAG}" -f ./Dockerfile .
+                    docker build -t "quay.io/pok-us-io/kaleidoscopic-api:${DESIRED_DOCKER_TAG}" --build-arg GIT_COMMIT=$(git rev-parse HEAD) -f ./ui/Dockerfile ./ui
+                    # docker build -t "quay.io/pok-us-io/kaleidoscopic-api:0.0.1" -f ./ui/Dockerfile ./ui
+      - run:
+          name: "Docker push API OCI Image"
+          command: |
+                    # checking docker image built in previous step is there
+                    docker images
+                    # --> are to be set with secrethub cli, and 2 Circle CI Env. Var. have to
+                    # be set for [Secrethub CLI Auth], at project, or context level
+                    export QUAY_SECRETS_FOLDER_DEV=pokusio/kaleidoscopic/dev/quay/bot
+                    export QUAY_BOT_USERNAME=$(secrethub read "${QUAY_SECRETS_FOLDER_DEV}/username")
+                    export QUAY_BOT_SECRET=$(secrethub read "${QUAY_SECRETS_FOLDER_DEV}/token")
+                    echo "QUAY_BOT_USERNAME=${QUAY_BOT_USERNAME}"
+                    # echo "QUAY_BOT_TOKEN=${QUAY_BOT_TOKEN}"
+                    docker login -u="${QUAY_BOT_USERNAME}" -p="${QUAY_BOT_SECRET}" quay.io
+                    # export DESIRED_DOCKER_TAG=$(git describe --match "[0-999].[0-999].[0-999]" --abbrev=0 --tags)
+                    export DESIRED_DOCKER_TAG=$(git describe --abbrev=0 --tags)
+                    export DESIRED_DOCKER_TAG="${DESIRED_DOCKER_TAG}-$(git rev-parse --short HEAD)"
+                    docker push "quay.io/pok-us-io/kaleidoscopic-api:${DESIRED_DOCKER_TAG}"
+                    docker tag "quay.io/pok-us-io/kaleidoscopic-api:${DESIRED_DOCKER_TAG}" "quay.io/pok-us-io/kaleidoscopic-api:stable-latest"
+                    docker push "quay.io/pok-us-io/kaleidoscopic-api:${DESIRED_DOCKER_TAG}"
+                    docker push "quay.io/pok-us-io/kaleidoscopic-api:stable-latest"
 
 workflows:
   version: 2.1
   ui_docker_build_and_push:
     jobs:
       - ui_docker_build_and_push:
+          context: kaleidoscopic
+          filters:
+            branches:
+              ignore:
+                - master
+                - develop
+                - /^feature\/*/
+                - /^support\/*/
+                - /^bugfix\/*/
+                - /^hotfix\/*/
+                - /^release\/*/
+            tags:
+              # only: /^v.*/
+              only:
+                - /^[0-999].[0-999].[0-999]/
+                - /^[0-999].[0-999].[0-999]-alpha/
+                - /^[0-999].[0-999].[0-999]-beta/
+  api_docker_build_and_push:
+    jobs:
+      - api_docker_build_and_push:
           context: kaleidoscopic
           filters:
             branches:
