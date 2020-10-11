@@ -1,29 +1,85 @@
-<title>Kaleidoscope</title>
 
-<div [ngStyle]="{'background': 'rgba(' + red + ',' + green + ',' + blue + ',' + opacity + ')', 'font-size': size + 'px', height: '100%', width: '100%'}">
+<div class="app">
 
-<h1>Kaleidoscopic</h1>
+  <header>
+    <title>Kaleidoscope</title>
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark " style="background-color: #212121;">
+      <a class="navbar-brand" routerLink="/">
+        <span class="mr-1" style="color:white">Kaleidoscopic</span>
+        <img src="./favicon.ico" width="20" height="20" alt="ganatan">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/">
+              <i class="fas fa-home mr-1"></i>home
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/about">
+              <i class="far fa-question-circle mr-1"></i>About
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/contact">
+              <i class="fas fa-envelope mr-1"></i>Contact
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" routerLink="/signin">
+              <i class="fas fa-user mr-1"></i>Sign in
+            </a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="https://github.com/pokusio/kaleidoscopic">
+              <i class="fab fa-github mr-1"></i>Github
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
 
-<p>
-  <a href="https://github.com/pokusio/kaleidoscopic">Source code on Github.com</a>
-</p>
+  <main>
 
-<div [style.color]="'orange'">style using property syntax</div>
-<div [className]="'blue'">css class using property syntax</div>
+      <div  class="container-fluid" [ngStyle]="{'background': 'rgba(' + red + ',' + green + ',' + blue + ',' + opacity + ')', 'font-size': size + 'px', height: '100%', width: '100%'}">
 
-<br /><br />
-
-<input [(ngModel)]="red" />
-<input [(ngModel)]="green" />
-<input [(ngModel)]="blue" />
-<input [(ngModel)]="opacity" />
+      <h1></h1>
 
 
+      <div [style.color]="'orange'">style using property syntax</div>
+      <div [className]="'blue'">css class using property syntax</div>
 
-<br />
+      <br /><br />
 
-<span [ngClass]="displayText">toggled with ngClass</span>
-<br/>
-<button (click)="toggle()">Toggle</button>
+      <input [(ngModel)]="red" />
+      <input [(ngModel)]="green" />
+      <input [(ngModel)]="blue" />
+      <input [(ngModel)]="opacity" />
 
-</div>
+
+
+      <br />
+
+      <span [ngClass]="displayText">toggled with ngClass</span>
+      <br/>
+      <button (click)="toggle()">Toggle</button>
+
+      </div>
+
+
+  </main>
+
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <p class="text-center text-white">&copy; 2020 - www.pok-us.io</p>
+        </div>
+      </div>
+    </div>
+  </div>
