@@ -66,9 +66,6 @@ LABEL maintainer=jean-baptiste.lasselle@gmail.com
 COPY --from=dependencies /kaleidoscopic/api/prod_node_modules ./node_modules
 # --- Copy built TypeScript app
 COPY --from=dependencies /kaleidoscopic/api/dist ./dist
-# --- Do not Copy Environment file, it is generated on the fly, based on environment variables
-#
-COPY .env /kaleidoscopic/api
 RUN echo "quick check peek [PWD=$(pwd)]" && ls -allh .
 RUN echo "quick check peek [PWD/dist=$(pwd)/dist]" && ls -allh ./dist
 RUN echo "Inside [FROM base AS release] npm run compile, Is [dist/] in PWD=[$(pwd)] ? (and what is its content ?)" && ls -allh && ls -allh dist/
