@@ -18,8 +18,8 @@ RUN chmod +x /kaleidoscopic/api/*.sh
 # Set [start.sh] as entrypoint
 ENTRYPOINT ["/kaleidoscopic/api/start.sh", "--"]
 # Copy project file
-COPY package.json /kaleidoscopic/api
-COPY tsconfig*.json /kaleidoscopic/api
+COPY package.json .
+COPY tsconfig.json .
 #
 # ---- Resolve Dependencies and Build ----
 FROM base AS dependencies
