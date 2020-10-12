@@ -45,5 +45,20 @@
     "ts-node": "^9.0.0",
     "tslint": "^6.1.3",
     "typescript": "^4.0.3"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/pokusio/kaleidoscopic.git"
+  },
+  "keywords": [
+    "angular",
+    "kaleidoscopic",
+    "typescript"
+  ],
+  "author": "Jean-Baptiste Lasselle <jean.baptiste.lasselle@gmail.com>",
+  "license": "GNU GPL v3",
+  "bugs": {
+    "url": "https://github.com/pokusio/kaleidoscopic/issues"
+  },
+  "homepage": "https://github.com/pokusio/kaleidoscopic#readme"
 }

@@ -1,0 +1,8 @@
+# build phase created directories
+dist/
+build/
+node_modules/
+# test generated folder
+ptitestespace/
+pokus_gitops/
+pokus_uploads/
