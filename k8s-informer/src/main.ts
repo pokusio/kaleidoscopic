@@ -9,7 +9,18 @@ const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 const listFn = () => k8sApi.listNamespacedPod('default');
 
 const informer = k8s.makeInformer(kc, '/api/v1/namespaces/default/pods', listFn);
-
+// ---
+// k8s.V1CustomResourceValidation
+// k8s.V1CustomResourceConversion
+// k8s.V1CustomResourceSubresources
+// k8s.V1CustomResourceDefinitionSpec
+// k8s.V1CustomResourceDefinitionList
+// k8s.V1CustomResourceDefinition
+// k8s.V1CustomResourceDefinitionNames
+// ---
+// k8s.V1beta1CustomResourceDefinition
+// k8s.V1beta1CustomResourceValidation
+// ---
 informer.on('add', (obj: k8s.V1Pod) => { console.log(`Added: ${obj.metadata!.name}`); });
 informer.on('update', (obj: k8s.V1Pod) => { console.log(`Updated: ${obj.metadata!.name}`); });
 informer.on('delete', (obj: k8s.V1Pod) => { console.log(`Deleted: ${obj.metadata!.name}`); });
