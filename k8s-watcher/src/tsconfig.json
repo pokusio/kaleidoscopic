@@ -1,0 +1,11 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "experimentalDecorators": true,  /* this is needed for ... */
+        "baseUrl": "",
+        "module": "commonjs"
+    },
+    "include": [
+      "**/*.ts"
+    ]
+}
