@@ -19,7 +19,57 @@ npm run server
 # curl -X GET http://localhost:3000/api/v1/ui/theme/color
 ```
 
-* Once done, here area few tests that I ran :
+* REST API `POST /api/v1/management/ui/theme/color` Endpoint with JSON Paylaod, successful invocation :
+
+```bash
+export JSON_PAYLOAD="{ \
+  \"description\" : \"Un petit exemple\", \
+  \"red\" : \"255\", \
+  \"green\" : \"15\", \
+  \"blue\" : \"75\", \
+  \"opacity\" : \"0.56\" \
+}"
+
+curl -iv -X POST  -d "${JSON_PAYLOAD}" -H 'Content-Type: application/json' http://localhost:3000/api/v1/management/ui/theme/color | tail -n 1 | jq .
+
+```
+
+* To Test Error Handling from TSOA  on REST API `POST /api/v1/management/ui/theme/color` Endpoint with on purpose malformed JSon Payload :
+
+```bash
+// missing opacity,  red and green specified values are not numbers
+export JSON_PAYLOAD="{ \"description\" : \"Un petit exemple\", \
+  \"red\" : \"255ab\",  \
+  \"green\" : \"15yy\", \
+  \"blue\" : \"75\" \
+}"
+
+curl -iv -X POST  -d "${JSON_PAYLOAD}" -H 'Content-Type: application/json' http://localhost:3000/api/v1/management/ui/theme/color | tail -n 1 | jq .
+
+// red specified value is not a number
+export JSON_PAYLOAD="{ \"description\" : \"Un petit exemple\", \
+  \"red\" : \"255\",  \
+  \"green\" : \"15yy\", \
+  \"blue\" : \"75\", \
+  \"opacity\" : \"0.56\" \
+}"
+
+curl -iv -X POST  -d "${JSON_PAYLOAD}" -H 'Content-Type: application/json' http://localhost:3000/api/v1/management/ui/theme/color | tail -n 1 | jq .
+
+// malformed JSON HTTP Error
+export JSON_PAYLOAD="{ \"description\" : \"Un petit exemple\", \
+  red : \"255\",  \
+  \"green\" : \"15\", \
+  \"blue\" : \"75\", \
+  \"opacity\" : \"0.56\" \
+}"
+
+
+curl -iv -X POST  -d "${JSON_PAYLOAD}" -H 'Content-Type: application/json' http://localhost:3000/api/v1/management/ui/theme/color | tail -n 1 | jq .
+
+```
+
+* here are a few tests that I ran :
 
 ```bash
 jbl@poste-devops-jbl-16gbram:~/kaleidoscopic/api$ curl -X GET http://localhost:3000/api/v1/ui/theme/color | jq .
